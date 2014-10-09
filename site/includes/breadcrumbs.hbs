@@ -37,9 +37,15 @@
 					<a href="{{assets}}/theme/index-{{language}}.html">{{breadcrumb3-title}}</a>
 				</li>
 			{{else}}
+				{{#contains tag "theme-gc-intranet"}}
 				<li>
 					<a href="{{assets}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
 				</li>
+				{{else}}
+				<li>
+					<a href="{{site.wetSiteRoot}}/demos/{{tag}}/index-{{language}}.html">{{breadcrumb3-title}}</a>
+				</li>
+				{{/contains}}
 			{{/contains}}
 		{{/is}}
 	{{/contains}}
