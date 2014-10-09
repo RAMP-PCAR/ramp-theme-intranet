@@ -37,6 +37,8 @@ define(["utils/util"],
                 footerHeight: 30,
                 footerHeightCollapsed: 5,
 
+                subtitleHeight: 35,
+
                 toolbarHeight: 32
             },
 
@@ -47,6 +49,11 @@ define(["utils/util"],
                 {
                     paused: true
                 });
+
+        if (body.hasClass("sub-title")) {
+            layout.headerHeight += layout.subtitleHeight;
+            heightGain += layout.subtitleHeight;
+        }
 
         fullScreenTimeLine
                 .to(header, transitionDuration, { top: navigation.outerHeight() * -1, position: "relative", ease: "easeOutCirc" }, 0)
