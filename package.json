@@ -1,0 +1,66 @@
+{
+    "name": "ramp-theme-intranet",
+    "subname": "Reusable Accessible Mapping Platform - Intranet Theme",
+    "version": "2.0.0",
+    "description": "RAMP GIS viewer - Bobcat; Sample of an implementation of RAMP with Intranet Theme",
+    "main": "index.js",
+    "url": "http://tfs.int.ec.gc.ca:8080/tfs/dc/_git/RAMP",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "bower install && cd lib/wet-boew && bower install && npm install && bower link && cd ../theme-gc-intranet && bower link wet-boew && npm install && cd ../.. && grunt init"
+    },
+    "keywords": [
+        "ramp",
+        "gis",
+        "viewer",
+        "theme",
+        "intranet"
+    ],
+    "author": "Web Mapping Team - Corporate Services Branch - Environment Canada",
+    "contributors": [
+        {
+            "name": "TBD 1",
+            "email": "x.y@ec.gc.ca"
+        },
+        {
+            "name": "TBD 2",
+            "email": "a.b@ec.gc.ca"
+        }
+    ],
+    "license": "none",
+    "devDependencies": {
+        "assemble": "~0.4.12",
+        "assemble-contrib-i18n": "~0.1.2",
+        "grunt": "~0.4.2",
+        "grunt-autoprefixer": "~0.7.2",
+        "grunt-bump": "~0.0.13",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-compress": "~0.9.1",
+        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-connect": "~0.8.0",
+        "grunt-contrib-copy": "~0.5.0",
+        "grunt-contrib-cssmin": "~0.7.0",
+        "grunt-contrib-htmlmin": "~0.3.0",
+        "grunt-contrib-imagemin": "~0.5.0",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-less": "~0.11.0",
+        "grunt-contrib-uglify": "~0.4.0",
+        "grunt-contrib-watch": "~0.5.3",
+        "grunt-contrib-yuidoc": "~0.5.2",
+        "grunt-docco": "~0.3.3",
+        "grunt-hub": "~0.7.0",
+        "grunt-jscs-checker": "~0.4.3",
+        "grunt-json-minify": "~0.4.0",
+        "grunt-modernizr": "~0.4.0",
+        "grunt-newer": "~0.7.0",
+        "grunt-notify": "~0.2.20",
+        "grunt-replace": "~0.6.2",
+        "fs-utils": "~0.5.0",
+        "i18next": "~1.7.4",
+        "request": "~2.34.0",
+        "time-grunt": "~1.0.0",
+        "grunt-sass": "^0.14.0"
+    },      
+
+    "themepath": "lib/theme-gc-intranet/"
+}

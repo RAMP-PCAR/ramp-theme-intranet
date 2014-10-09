@@ -1,0 +1,35 @@
+{
+    "name": "ramp-theme-intranet",
+    "version": "2.0.0",
+    "homepage": "http://ramp-pcar.github.io",
+    "authors": [
+        "BeSD - SA Team"
+    ],
+    "description": "RAMP GIS viewer - Bobcat; Sample of an implementation of RAMP",
+    "keywords": [
+        "ramp",
+        "gis",
+        "viewer",
+        "theme",
+        "intranet"
+    ],
+    "license": "none",
+    "ignore": [
+        ".git*",
+        ".travis.yml",
+        ".editorconfig",
+        "node_modules",
+        "test",
+        "./lib"
+    ],
+    "dependencies": {
+        "ramp-pcar": "C:/Users/Aleksueir/Code/TFS2013/RAMP/.git#feature/wet4.0",
+        "theme-gc-intranet": "https://github.com/wet-boew/theme-gc-intranet.git#4.0.5"
+    },
+    "moduleType": [
+        "globals"
+    ],
+    "resolutions": {
+        "DataTables": "1.10.1"
+    }
+}
