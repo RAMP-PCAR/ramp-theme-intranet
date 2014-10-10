@@ -244,6 +244,17 @@ module.exports = (grunt) ->
     )
 
     @registerTask(
+        'deploy'
+        'Deploys a dist into the specified folder'
+        [
+            'dist'
+            'clean:deploy'
+            'copy:deploy'
+            'notify:deploy'
+        ]
+    )
+
+    @registerTask(
         'api'
         'Creating API docs'
         [
@@ -596,6 +607,12 @@ module.exports = (grunt) ->
                 cwd: 'lib/fontawesome/'
                 src: 'fonts/**/*.*'
                 dest: 'dist/css/'
+
+            deploy:
+                expand: true
+                cwd: 'dist'
+                src: '**/*.*'
+                dest: '<%= pkg.deployFolder %>/'
 
         assemble:
             options:
@@ -1158,6 +1175,15 @@ module.exports = (grunt) ->
 
             docco: [
             ]
+
+            deploy:
+                options:
+                    ##'no-write': true
+                    force: false
+                
+                src: [
+                    ##'<%= pkg.deployFolder %>'
+                ]
 
         hub:
             'wet-boew':
