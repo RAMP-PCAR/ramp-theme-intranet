@@ -15,7 +15,6 @@ module.exports = (grunt) ->
         'Only needed when the repo is first cloned'
         [
             'hub'
-            'modernizr'
             'thanks'
             'api:enhance'
         ]
@@ -161,7 +160,7 @@ module.exports = (grunt) ->
 
     @registerTask(
         'serve:build'
-        'INTERNAL: Create unminified docs'
+        'Create unminified docs'
         [
             'build'
             'connect:build'
@@ -171,7 +170,7 @@ module.exports = (grunt) ->
 
     @registerTask(
         'serve:dist'
-        'INTERNAL: Create unminified docs'
+        'Create unminified docs'
         [
             'dist'
             'connect:dist'
@@ -884,31 +883,7 @@ module.exports = (grunt) ->
                         '!**/*-src.html'
                     ]
                     dest: '<%= yuidocconfig.options.outdir %>'
-                ]
-
-        modernizr:
-            devFile: "lib/modernizr/modernizr-custom.js"
-            outputFile: "lib/modernizr/modernizr-custom.js"
-            extra:
-                shiv: true
-                printshiv: false
-                load: true
-                mq: false
-                cssclasses: true
-                css3: true
-                cssanimations: true
-                csstransitions: true
-            extensibility:
-                addtest: false
-                prefixed: false
-                teststyles: false
-                testprops: false
-                testallprops: false
-                hasevents: false
-                prefixes: false
-                domprefixes: false
-            uglify: false
-            parseFiles: false
+                ]                       
 
         jshint:
             files: [
@@ -1255,7 +1230,6 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-hub'
     @loadNpmTasks 'grunt-jscs'
     @loadNpmTasks 'grunt-json-minify'
-    @loadNpmTasks 'grunt-modernizr'
     @loadNpmTasks 'grunt-newer'
     @loadNpmTasks 'grunt-notify'
     @loadNpmTasks 'grunt-replace'
