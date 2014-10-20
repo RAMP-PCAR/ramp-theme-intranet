@@ -45,7 +45,7 @@
         "grunt-contrib-jshint": "~0.10.0",
         "grunt-contrib-less": "~0.11.0",
         "grunt-contrib-uglify": "~0.4.0",
-        "grunt-contrib-watch": "~0.5.3",
+        "grunt-contrib-watch": "~0.6.1",
         "grunt-contrib-yuidoc": "~0.5.2",
         "grunt-docco": "~0.3.3",
         "grunt-hub": "~0.7.0",
@@ -57,8 +57,7 @@
         "fs-utils": "~0.5.0",
         "i18next": "~1.7.4",
         "request": "~2.34.0",
-        "time-grunt": "~1.0.0",
-        "grunt-sass": "^0.14.0"
+        "time-grunt": "~1.0.0"
     },      
 
     "deployFolder": "//sncr01wbingsdv1.ncr.int.ec.gc.ca/Drive-E/wwwroot/RAMP_Sample/w4/intranet",

@@ -1079,6 +1079,7 @@ module.exports = (grunt) ->
         watch:
             options:
                 livereload: 35731
+                livereloadOnError: false
     
             pages:
                 files: [
@@ -1233,7 +1234,7 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-newer'
     @loadNpmTasks 'grunt-notify'
     @loadNpmTasks 'grunt-replace'
-    @loadNpmTasks 'grunt-sass'
+    #@loadNpmTasks 'grunt-sass'
         
     @task.run 'notify_hooks'
 
