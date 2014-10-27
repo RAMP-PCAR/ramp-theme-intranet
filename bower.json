@@ -1,15 +1,16 @@
 {
     "name": "ramp-theme-intranet",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "homepage": "http://ramp-pcar.github.io",
     "authors": [
         "BeSD - SA Team"
     ],
-    "description": "RAMP GIS viewer - Bobcat; Sample of an implementation of RAMP",
+    "description": "RAMP GIS viewer - Canada Goose; Sample of an implementation of RAMP with Intranet Theme",
     "keywords": [
         "ramp",
         "gis",
         "viewer",
+        "map",
         "theme",
         "intranet"
     ],
@@ -23,7 +24,7 @@
         "./lib"
     ],
     "dependencies": {
-        "ramp-pcar": "C:/Users/Aleksueir/Code/TFS2013/RAMP/.git#feature/wet4.0",
+        "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR.git#v3.0.0",
         "theme-gc-intranet": "https://github.com/wet-boew/theme-gc-intranet.git#4.0.5"
     },
     "moduleType": [

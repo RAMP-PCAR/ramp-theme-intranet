@@ -15,7 +15,6 @@ module.exports = (grunt) ->
         'Only needed when the repo is first cloned'
         [
             'hub'
-            'modernizr'
             'thanks'
             'api:enhance'
         ]
@@ -161,7 +160,7 @@ module.exports = (grunt) ->
 
     @registerTask(
         'serve:build'
-        'INTERNAL: Create unminified docs'
+        'Create unminified docs'
         [
             'build'
             'connect:build'
@@ -171,7 +170,7 @@ module.exports = (grunt) ->
 
     @registerTask(
         'serve:dist'
-        'INTERNAL: Create unminified docs'
+        'Create unminified docs'
         [
             'dist'
             'connect:dist'
@@ -240,6 +239,17 @@ module.exports = (grunt) ->
             'clean:tarball'
             'compress'
             'notify:tarball'
+        ]
+    )
+
+    @registerTask(
+        'deploy'
+        'Deploys a dist into the specified folder'
+        [
+            'dist'
+            'clean:deploy'
+            'copy:deploy'
+            'notify:deploy'
         ]
     )
 
@@ -597,6 +607,12 @@ module.exports = (grunt) ->
                 src: 'fonts/**/*.*'
                 dest: 'dist/css/'
 
+            deploy:
+                expand: true
+                cwd: 'dist'
+                src: '**/*.*'
+                dest: '<%= pkg.deployFolder %>/'
+
         assemble:
             options:
                 data: [
@@ -867,31 +883,7 @@ module.exports = (grunt) ->
                         '!**/*-src.html'
                     ]
                     dest: '<%= yuidocconfig.options.outdir %>'
-                ]
-
-        modernizr:
-            devFile: "lib/modernizr/modernizr-custom.js"
-            outputFile: "lib/modernizr/modernizr-custom.js"
-            extra:
-                shiv: true
-                printshiv: false
-                load: true
-                mq: false
-                cssclasses: true
-                css3: true
-                cssanimations: true
-                csstransitions: true
-            extensibility:
-                addtest: false
-                prefixed: false
-                teststyles: false
-                testprops: false
-                testallprops: false
-                hasevents: false
-                prefixes: false
-                domprefixes: false
-            uglify: false
-            parseFiles: false
+                ]                       
 
         jshint:
             files: [
@@ -1087,6 +1079,7 @@ module.exports = (grunt) ->
         watch:
             options:
                 livereload: 35731
+                livereloadOnError: false
     
             pages:
                 files: [
@@ -1159,6 +1152,15 @@ module.exports = (grunt) ->
             docco: [
             ]
 
+            deploy:
+                options:
+                    ##'no-write': true
+                    force: false
+                
+                src: [
+                    ##'<%= pkg.deployFolder %>'
+                ]
+
         hub:
             'wet-boew':
                 src: [
@@ -1227,13 +1229,12 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-contrib-yuidoc'
     @loadNpmTasks 'grunt-docco'
     @loadNpmTasks 'grunt-hub'
-    @loadNpmTasks 'grunt-jscs-checker'
+    @loadNpmTasks 'grunt-jscs'
     @loadNpmTasks 'grunt-json-minify'
-    @loadNpmTasks 'grunt-modernizr'
     @loadNpmTasks 'grunt-newer'
     @loadNpmTasks 'grunt-notify'
     @loadNpmTasks 'grunt-replace'
-    @loadNpmTasks 'grunt-sass'
+    #@loadNpmTasks 'grunt-sass'
         
     @task.run 'notify_hooks'
 

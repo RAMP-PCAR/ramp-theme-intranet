@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if lt IE 9]><html class="no-js lt-ie9" lang="{{language}}"><![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="{{language}}">
@@ -15,7 +15,7 @@
         <!-- Meta data-->
         {{>headresources}}
     </head>
-    <body vocab="http://schema.org/" typeof="WebPage">
+    <body vocab="http://schema.org/" typeof="WebPage" class="{{#isnt subsite_title 'false'}}sub-title{{/isnt}}" >
         <ul id="wb-tphp">
             <li class="wb-slc">
                 <a class="wb-sl" href="#wb-cont">{{{i18n "tmpl-skip-cont"}}}</a>
@@ -49,10 +49,9 @@
 
                 <div class="container">
                     <div class="row">
-                        <div id="wb-sttl" class="col-md-8">
+                        <div id="wb-sttl" class="col-md-12">
                             {{>brand}}
                         </div>
-                        {{>wordmark}}
 {{#isnt sitesearch "false"}}
                         <section id="wb-srch" class="visible-md visible-lg">
                             <h2>{{{i18n "tmpl-search"}}}</h2>
@@ -62,6 +61,20 @@
                     </div>
                 </div>
             </div>
+{{#isnt subsite_title "false"}}
+			<div id="wb-bnr-ss">
+				<div class="container">
+					<div class="row col-md-12">
+						<div id="wb-ss">
+                            <a href="#">
+                                {{{i18n "page-siteSubTitle"}}}
+                            </a>
+						</div>
+					</div>
+				</div>
+			</div>
+{{/isnt}}
+
 {{#isnt sitemenu "false"}}
             <nav role="navigation" id="wb-sm" data-ajax-fetch="ajax/sitemenu-{{language}}.html" data-trgt="mb-pnl" class="wb-menu visible-md visible-lg" typeof="SiteNavigationElement">
                 {{>sitemenu}}

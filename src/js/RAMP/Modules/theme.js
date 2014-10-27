@@ -23,13 +23,26 @@ define(["utils/util"],
             wbCore = $("main"),
             wbFoot = $("footer"),
 
-            megaMenuDiv = $("#wb-sm"),
+            //megaMenuDiv = $("#wb-sm"),
             navigation = $("#wb-bar"),
-            title = navigation.next(),
 
             header = $("header"),
 
             transitionDuration = 0.5,
+
+            layout = {
+                headerHeight: 195,
+                headerHeightCollapsed: 53,
+
+                footerHeight: 30,
+                footerHeightCollapsed: 5,
+
+                subtitleHeight: 35,
+
+                toolbarHeight: 32
+            },
+
+            heightGain = layout.headerHeight - layout.headerHeightCollapsed + layout.footerHeight - layout.footerHeightCollapsed,
 
             isFullScreen = false,
             fullScreenTimeLine = new TimelineLite(
@@ -37,15 +50,17 @@ define(["utils/util"],
                     paused: true
                 });
 
+        if (body.hasClass("sub-title")) {
+            layout.headerHeight += layout.subtitleHeight;
+            heightGain += layout.subtitleHeight;
+        }
+
         fullScreenTimeLine
-                .to(header, transitionDuration, { top: "-46px", position: "relative", ease: "easeOutCirc" }, 0)
-                .set([navigation, megaMenuDiv], { display: "none !important" })
+                .to(header, transitionDuration, { top: navigation.outerHeight() * -1, position: "relative", ease: "easeOutCirc" }, 0)
+                //.set(megaMenuDiv, { display: "none !important", className: "+=wb-invisible" })
 
-                .to(title, transitionDuration, { top: "-22px" }, 0)
-
-                .fromTo(body, transitionDuration, { "background-position-y": "43px" }, { "background-position-y": "-26px", ease: "easeOutCirc" }, 0)
-                .to(wbCore, transitionDuration, { top: "61px", bottom: "5px", ease: "easeOutCirc" }, 0)
-                .to(wbFoot, transitionDuration, { height: "5px", ease: "easeOutCirc" }, 0)
+                .to(wbCore, transitionDuration, { top: layout.headerHeightCollapsed, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
+                .to(wbFoot, transitionDuration, { height: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
 
                 .set(body, { className: "+=full-screen" });
 
@@ -64,18 +79,24 @@ define(["utils/util"],
                 fullScreenTimeLine.play();
 
                 extraTweeen
-                    .to(".sub-panel-container.summary-data-details", transitionDuration, { top: "93px", bottom: "10px", ease: "easeOutCirc" }, 0)
-                    .to(".sub-panel-container.full-data-details", transitionDuration, { top: "61px", bottom: "10px", ease: "easeOutCirc" }, 0)
+                    .to(".sub-panel-container.summary-data-details", transitionDuration,
+                        { top: layout.headerHeightCollapsed + layout.toolbarHeight, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
+                    .to(".sub-panel-container.full-data-details", transitionDuration,
+                        { top: layout.headerHeightCollapsed, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
 
-                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration, { height: "+=160px", ease: "easeOutCirc" }, 0.01); // animate height of the datatable scrollBody since it's explicitly set
+                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration,
+                        { height: "+=" + heightGain, ease: "easeOutCirc" }, 0.01); // animate height of the datatable scrollBody since it's explicitly set
             } else {
                 fullScreenTimeLine.reverse();
 
                 extraTweeen
-                    .to(".sub-panel-container.summary-data-details", transitionDuration, { top: "239px", bottom: "0px", ease: "easeInCirc" }, 0)
-                    .to(".sub-panel-container.full-data-details", transitionDuration, { top: "207px", bottom: "0px", ease: "easeInCirc" }, 0)
+                    .to(".sub-panel-container.summary-data-details", transitionDuration,
+                        { top: layout.headerHeight + layout.toolbarHeight, bottom: layout.footerHeight, ease: "easeInCirc" }, 0)
+                    .to(".sub-panel-container.full-data-details", transitionDuration,
+                        { top: layout.headerHeight, bottom: layout.footerHeight, ease: "easeInCirc" }, 0)
 
-                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration - 0.01, { height: "-=160px", ease: "easeInCirc" }, 0); // animate height of the datatable scrollBody since it's explicitly set
+                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration - 0.01,
+                        { height: "-=" + heightGain, ease: "easeInCirc" }, 0); // animate height of the datatable scrollBody since it's explicitly set
             }
 
             extraTweeen.play();
@@ -156,6 +177,16 @@ define(["utils/util"],
                                 node
                                     .tooltipster("content", node.attr("title"))
                                     .removeAttr("title");
+                            });
+                        break;
+
+                    case "destroy":
+                        target
+                            .find(".tooltipstered")
+                            .each(function (i, obj) {
+                                var node = $(obj);
+                                node
+                                    .tooltipster("destroy");
                             });
                         break;
 
