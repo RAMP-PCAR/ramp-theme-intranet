@@ -1,7 +1,7 @@
 fs = require("fs")
 
 module.exports = (grunt) ->
-
+    
     @registerTask(
         'default'
         'Default task create a distribution package.'
@@ -43,6 +43,7 @@ module.exports = (grunt) ->
             'copy:assetsBuild'
             'copy:proxyBuild'
             'copy:localesBuild'
+            'mergeLocales'
             'copy:templatesBuild'
             'notify:assets'
         ]
@@ -226,7 +227,7 @@ module.exports = (grunt) ->
                     contents = contents.replace 'js/lib/lib.js', 'js/lib/lib.min.js'
                     contents = contents.replace 'css/lib/lib.css', 'css/lib/lib.min.css'
                     contents = contents.replace 'css/theme.less.css', 'css/theme.less.min.css'
-                    contents = contents.replace /((?=\/wet-boew\/)[^\"]+?\.)(js|css)/g, '$1min.$2'
+                    contents = contents.replace(/((?=\/wet-boew\/)[^\"]+?\.)(js|css)/g, '$1min.$2')
 
                     grunt.file.write file, contents 
             )
@@ -312,6 +313,28 @@ module.exports = (grunt) ->
                 fs.writeFileSync builderFileName, data
             
             done()
+    )
+
+    @registerTask(
+        'mergeLocales'
+        'INTERNAL'
+        ->
+            locales = ['en-CA', 'fr-CA']
+            tasks = []
+            
+            locales.forEach(
+                ( locale ) ->
+                    grunt.config 'merge-json.locale-' + locale,
+                        src: [ 
+                                'build/locales/' + locale + '/translation.json'
+                                'src/locales/' + locale + '/translation.json'
+                            ]
+                        dest: 'build/locales/' + locale + '/translation.json'
+                    
+                    tasks.push 'merge-json:locale-' + locale
+            )
+            
+            grunt.task.run tasks
     )
 
     @registerTask(
@@ -510,22 +533,13 @@ module.exports = (grunt) ->
                     cwd: '<%= corepath %>src/locales'
                     src: '**/*.json'
                     dest: 'build/locales'
-                ,
-                    expand: true
-                    cwd: 'src/locales'
-                    src: '**/*.json'
-                    dest: 'build/locales'
                 ]   
 
             localesDist:
                 files: [
                     expand: true
-                    cwd: '<%= corepath %>src/locales'
-                    src: '**/*.json'
-                    dest: 'dist/locales'
-                ,
-                    expand: true
-                    cwd: 'src/locales'
+                    #cwd: '<%= corepath %>src/locales'
+                    cwd: 'build/locales'
                     src: '**/*.json'
                     dest: 'dist/locales'
                 ]    
@@ -613,6 +627,15 @@ module.exports = (grunt) ->
                 src: '**/*.*'
                 dest: '<%= pkg.deployFolder %>/'
 
+        'merge-json':
+            locales:
+                src: [
+                    '<%= corepath %>src/locales/en-CA/translation.json'
+                    'src/locales/en-CA/translation.json'
+                ]
+                dest: 'build/locales/en-CA/translation.json'
+                
+
         assemble:
             options:
                 data: [
@@ -639,7 +662,7 @@ module.exports = (grunt) ->
                 i18next:
                     countryCode: 'CA'
                     debug: false
-                    localePath: '<%= corepath %>src/locales'
+                    localePath: 'build/locales'
                     languages: ['en', 'fr']
 
             ramp:
@@ -1227,6 +1250,7 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-contrib-uglify'
     @loadNpmTasks 'grunt-contrib-watch'
     @loadNpmTasks 'grunt-contrib-yuidoc'
+    @loadNpmTasks 'grunt-merge-json'
     @loadNpmTasks 'grunt-docco'
     @loadNpmTasks 'grunt-hub'
     @loadNpmTasks 'grunt-jscs'
