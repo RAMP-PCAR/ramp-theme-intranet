@@ -445,13 +445,13 @@ module.exports = (grunt) ->
             configDist:
                 files: [
                     expand: true
-                    cwd: 'src'
+                    cwd: '<%= corepath %>src'
                     src: 'config.*.json'
                     dest: 'dist/'
                 # overrider core config with local if exists
                 ,
                     expand: true
-                    cwd: '<%= corepath %>src'
+                    cwd: 'src'
                     src: 'config.*.json'
                     dest: 'dist/'
                 ]
