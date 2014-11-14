@@ -24,7 +24,8 @@
         "./lib"
     ],
     "dependencies": {
-        "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR.git/archive/develop.zip",
+        "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR/archive/develop.zip",
+        "ramp-pcar_": "https://github.com/RAMP-PCAR/RAMP-PCAR.git#v3.0.1",
         "theme-gc-intranet": "https://github.com/wet-boew/theme-gc-intranet.git#4.0.5"
     },
     "moduleType": [
