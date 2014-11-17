@@ -269,16 +269,6 @@ module.exports = (grunt) ->
     )
 
     @registerTask(
-        'wsass'
-        'INTERNAL:'
-        [
-            'sass'
-            'autoprefixer:wetTheme'
-            'cssmin:wetTheme'
-        ]
-    )
-
-    @registerTask(
         'api:enhance'
         'INTERNAL: '
         () ->
@@ -798,16 +788,6 @@ module.exports = (grunt) ->
                 rename: (dest, src) ->
                         dest + src.replace('.less', '.less.css');
 
-        ###
-        sass:
-            wetTheme:
-                expand: true
-                cwd: '<%= pkg.themepath %>src'
-                src: '*theme*.scss'
-                dest: '<%= pkg.themepath %>dist/unmin/css'
-                ext: '.css'
-        ###
-
         autoprefixer:
             options:
                 map: false
@@ -1258,7 +1238,6 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-newer'
     @loadNpmTasks 'grunt-notify'
     @loadNpmTasks 'grunt-replace'
-    #@loadNpmTasks 'grunt-sass'
         
     @task.run 'notify_hooks'
 
