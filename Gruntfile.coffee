@@ -729,16 +729,6 @@ module.exports = (grunt) ->
                 dest: 'dist/css/'
                 rename: (dest, src) ->
                         dest + src.replace('.css', '.min.css');
-            ###
-            wetTheme:
-                options:
-                    banner: ' banner '
-                expand: true
-                cwd: '<%= pkg.themepath %>dist/unmin/css/'
-                src: '*theme*.css'
-                ext: '.min.css'
-                dest: '<%= pkg.themepath %>dist/css'
-            ###
 
         uglify:
             options:
@@ -814,17 +804,7 @@ module.exports = (grunt) ->
                 ]
                 dest: 'build/css/'
                 #rename: (dest, src) ->
-                    #dest + src.replace('.css', '.pref.css')
-            
-            ###
-            wetTheme:
-                cwd: '<%= pkg.themepath %>dist/unmin/css'
-                src: [
-                    '*theme*.css/'
-                ]
-                dest: '<%= pkg.themepath %>dist/unmin/css'
-                expand: true
-            ###
+                    #dest + src.replace('.css', '.pref.css')            
 
         replace:
             options:
