@@ -92,7 +92,7 @@ module.exports = (grunt) ->
 
             grunt.task.run [
                 'less'
-                'autoprefixer:cssCore'
+                'autoprefixer'
                 'concat:cssLib'
                 'copy:cssLibResBuild'
                 'notify:css'
@@ -127,7 +127,7 @@ module.exports = (grunt) ->
             'js:dist'
             'templatemin'
             'json-minify'
-            'cssmin:dist'
+            'cssmin'
             'htmlmin'
             'useMinAssets'
             'imagemin'
@@ -520,12 +520,10 @@ module.exports = (grunt) ->
                 dest: 'dist/proxy'
                 
             localesBuild:
-                files: [
-                    expand: true
-                    cwd: '<%= corepath %>src/locales'
-                    src: '**/*.json'
-                    dest: 'build/locales'
-                ]   
+                expand: true
+                cwd: '<%= corepath %>src/locales'
+                src: '**/*.json'
+                dest: 'build/locales'
 
             localesDist:
                 files: [
@@ -1081,7 +1079,7 @@ module.exports = (grunt) ->
                     'src/js/RAMP/**/*.json'
                 ]
                 tasks: [
-                    'copy:templates'
+                    'copy:templatesBuild'
                 ]
 
             js:
@@ -1105,7 +1103,7 @@ module.exports = (grunt) ->
                 ]
                 tasks: [
                     'less'
-                    'autoprefixer:cssCore'
+                    'autoprefixer'
                     'notify:css'
                 ]
             
