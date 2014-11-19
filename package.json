@@ -1,7 +1,7 @@
 {
     "name": "ramp-theme-intranet",
     "subname": "Reusable Accessible Mapping Platform - Intranet Theme",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "RAMP GIS viewer - Canada Goose; Sample of an implementation of RAMP with Intranet Theme",
     "main": "index.js",
     "url": "http://tfs.int.ec.gc.ca:8080/tfs/dc/_git/RAMP",
@@ -48,6 +48,7 @@
         "grunt-contrib-uglify": "~0.4.0",
         "grunt-contrib-watch": "~0.6.1",
         "grunt-contrib-yuidoc": "~0.5.2",
+        "grunt-merge-json": "~0.9.5",
         "grunt-docco": "~0.3.3",
         "grunt-hub": "~0.7.0",
         "grunt-jscs": "~0.7.1",
