@@ -124,8 +124,8 @@ module.exports = (grunt) ->
         'Create a minified distribution package.'
         [
             'clean:dist'
-            'copy:dist'
             'build'
+            'copy:dist'
             'js:dist'
             'templatemin'
             'json-minify'
