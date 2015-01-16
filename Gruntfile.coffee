@@ -1338,7 +1338,7 @@ module.exports = (grunt) ->
                     'package.json'
                     'bower.json'
                 ]
-                commit: true
+                commit: false
                 commitMessage: 'Release v%VERSION%',
                 createTag: false
                 push: false 
