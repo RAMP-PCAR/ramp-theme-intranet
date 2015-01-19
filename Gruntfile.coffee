@@ -1282,7 +1282,11 @@ module.exports = (grunt) ->
                     'lib/wet-boew/Gruntfile.coffee'
                 ]
                 tasks: [
-                    'dist'
+                    'checkDependencies'
+                    'test'
+                    'build'
+                    'minify'
+                    'i18n_csv:assemble'
                 ]
                         
             'wetTheme':
@@ -1290,7 +1294,8 @@ module.exports = (grunt) ->
                     '<%= pkg.themepath %>Gruntfile.coffee'
                 ]
                 tasks: [
-                    'default'
+                    'build'
+                    'assets-dist'
                 ]
 
         compress:
