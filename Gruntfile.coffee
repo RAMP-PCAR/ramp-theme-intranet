@@ -124,8 +124,8 @@ module.exports = (grunt) ->
         'Create a minified distribution package.'
         [
             'clean:dist'
-            'copy:dist'
             'build'
+            'copy:dist'
             'js:dist'
             'templatemin'
             'json-minify'
@@ -595,13 +595,13 @@ module.exports = (grunt) ->
 
             proxyBuild:
                 expand: true
-                cwd: '<%= corepath %>src/proxy'
+                cwd: '<%= corepath %>proxy'
                 src: '**/*.*'
                 dest: 'build/proxy'
             
             proxyDist:
                 expand: true
-                cwd: '<%= corepath %>src/proxy'
+                cwd: '<%= corepath %>proxy'
                 src: '**/*.*'
                 dest: 'dist/proxy'
                 
@@ -1241,7 +1241,7 @@ module.exports = (grunt) ->
                 ]
 
         clean:
-            optiosn:
+            options:
                 force: true
             
             build:[
@@ -1294,10 +1294,13 @@ module.exports = (grunt) ->
                 ]
 
         compress:
-            tar:
+            tgz:
                 options:
-                    mode: 'tar'
-                    archive: 'tarball/<%= pkg.name %>-dist-<%= pkg.version %>.tar'
+                    mode: 'tgz'
+                    archive: 'tarball/<%= pkg.name %>-dist-<%= pkg.version %>.tgz'
+                    level: 9
+                    pretty: true
+                    
                 files: [
                     expand: true
                     src: '**/*'
@@ -1309,6 +1312,7 @@ module.exports = (grunt) ->
                     mode: 'zip'
                     archive: 'tarball/<%= pkg.name %>-dist-<%= pkg.version %>.zip',
                     level: 9
+                    pretty: true
 
                 files: [
                     expand: true
@@ -1334,7 +1338,7 @@ module.exports = (grunt) ->
                     'package.json'
                     'bower.json'
                 ]
-                commit: true
+                commit: false
                 commitMessage: 'Release v%VERSION%',
                 createTag: false
                 push: false 
