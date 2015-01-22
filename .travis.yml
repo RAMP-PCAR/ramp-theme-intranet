@@ -10,6 +10,7 @@ branches:
     - /^test/.*$/
 
 before_install: 
+  - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
   - npm install -g grunt-cli
   - npm install -g bower
 
