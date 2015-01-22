@@ -1342,7 +1342,7 @@ module.exports = (grunt) ->
                 commitMessage: 'Release v%VERSION%',
                 createTag: false
                 push: false 
-
+                
     # These plugins provide necessary tasks.
     @loadNpmTasks 'assemble'
     @loadNpmTasks 'grunt-autoprefixer'
