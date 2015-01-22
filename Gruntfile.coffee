@@ -1346,7 +1346,32 @@ module.exports = (grunt) ->
                 commit: false
                 commitMessage: 'Release v%VERSION%',
                 createTag: false
-                push: false 
+                push: false
+                
+        'gh-pages':
+            options:
+                clone: 'ramp-theme-dist'
+                # base: 'dist'
+
+            travis:
+                options:
+                    repo: process.env.THEME_DIST_REPO
+                    branch: '<%= pkg.name %>'
+                    message: ((
+                        if process.env.TRAVIS_TAG
+                            "Production files for the " + process.env.TRAVIS_TAG + " release"
+                        else
+                            "Travis build " + process.env.TRAVIS_BUILD_NUMBER + " [" + process.env.TRAVIS_BRANCH + "]"
+                    ))
+                    silent: true
+                    tag: ((
+                        if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
+                    ))
+                src: [
+                    'dist/**/*.*'
+                    'build/**/*.*'
+                    'tarball/**/*.*'
+                ]
                 
     # These plugins provide necessary tasks.
     @loadNpmTasks 'assemble'
@@ -1364,6 +1389,7 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-contrib-uglify'
     @loadNpmTasks 'grunt-contrib-watch'
     @loadNpmTasks 'grunt-contrib-yuidoc'
+    @loadNpmTasks 'grunt-gh-pages'
     @loadNpmTasks 'grunt-merge-json'
     @loadNpmTasks 'grunt-docco'
     @loadNpmTasks 'grunt-jsonlint'
