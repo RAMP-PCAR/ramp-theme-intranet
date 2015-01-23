@@ -1,7 +1,7 @@
 {
     "name": "ramp-theme-intranet",
     "subname": "Reusable Accessible Mapping Platform - Intranet Theme",
-    "version": "%version%",
+    "version": "5.0.0-10",
     "description": "RAMP GIS viewer - Elk; Sample of an implementation of RAMP with Intranet Theme",
     "main": "index.js",
     "url": "http://tfs.int.ec.gc.ca:8080/tfs/dc/_git/RAMP",
