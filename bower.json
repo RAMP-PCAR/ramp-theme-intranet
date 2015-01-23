@@ -1,6 +1,6 @@
 {
     "name": "ramp-theme-intranet",
-    "version": "5.0.0-5",
+    "version": "%version%",
     "homepage": "http://ramp-pcar.github.io",
     "authors": [
         "BeSD - SA Team"
@@ -24,7 +24,7 @@
         "./lib"
     ],
     "dependencies": {
-        "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR.git#v5.0.0-5",
+        "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR.git#v5.0.0-9",
         "theme-gc-intranet": "https://github.com/wet-boew/theme-gc-intranet.git#4.0.5"
     },
     "moduleType": [
