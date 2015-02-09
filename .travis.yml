@@ -20,3 +20,4 @@ script:
 
 after_success: 
   - grunt gh-pages:travis
+  - grunt release
