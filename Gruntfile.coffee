@@ -63,6 +63,7 @@ module.exports = (grunt) ->
                     [
                         grunt.config('corepath') + 'src/js/lib/jquery.dataTables.pagination.ramp.js'
                         grunt.config('corepath') + 'src/js/lib/jquery.ui.navigation.ramp.js'
+                        grunt.config('corepath') + 'src/js/lib/jscolor.js'
                     ]
                 )
             )
