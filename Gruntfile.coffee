@@ -1372,7 +1372,7 @@ module.exports = (grunt) ->
                         else
                             "Travis build " + process.env.TRAVIS_BUILD_NUMBER + " [" + process.env.TRAVIS_BRANCH + "]"
                     ))
-                    silent: false
+                    silent: true
                     tag: ((
                         if process.env.TRAVIS_TAG then process.env.TRAVIS_TAG else false
                     ))
