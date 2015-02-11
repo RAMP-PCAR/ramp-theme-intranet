@@ -8,6 +8,7 @@ branches:
     - develop
     - master
     - /^test/.*$/
+    - /^v\d+\.\d+\.\d+(-.+)?$/
 
 before_install: 
   - echo -e "machine github.com\n  login $GH_TOKEN" >> ~/.netrc
@@ -17,5 +18,5 @@ before_install:
 script:
   - grunt
 
-after_success: 
-  - grunt gh-pages:travis
+after_success:
+  - grunt release

@@ -63,6 +63,7 @@ module.exports = (grunt) ->
                     [
                         grunt.config('corepath') + 'src/js/lib/jquery.dataTables.pagination.ramp.js'
                         grunt.config('corepath') + 'src/js/lib/jquery.ui.navigation.ramp.js'
+                        grunt.config('corepath') + 'src/js/lib/jscolor.js'
                     ]
                 )
             )
@@ -421,6 +422,19 @@ module.exports = (grunt) ->
             grunt.task.run tasks
     )
 
+    @registerTask(
+        'release'
+        'INTERNAL Uploads release builds to GitHub releases.'
+        () ->
+            tasks = [
+                'github-release'
+                'gh-pages'
+            ]
+            
+            if process.env.TRAVIS_TAG ##&& (process.env.TRAVIS_BRANCH == 'develop' || process.env.TRAVIS_BRANCH == 'master') 
+                grunt.task.run tasks
+    )
+    
     smartExpand = ( cwd, arr, extra ) ->    
         # determine file order here and concat to arr
         extra = extra or []
@@ -1373,6 +1387,19 @@ module.exports = (grunt) ->
                     'tarball/**/*.*'
                 ]
                 
+        'github-release':
+            options:
+                repository: process.env.HOME_REPO
+                auth:
+                    user: 'ramp-pcar-bot'
+                    password: process.env.GH_TOKEN
+                release:
+                    draft: false
+                    prerelease: true
+                    tag_name: process.env.TRAVIS_TAG
+            files:
+                src: ['tarball/*.*']
+                
     # These plugins provide necessary tasks.
     @loadNpmTasks 'assemble'
     @loadNpmTasks 'grunt-autoprefixer'
@@ -1390,6 +1417,7 @@ module.exports = (grunt) ->
     @loadNpmTasks 'grunt-contrib-watch'
     @loadNpmTasks 'grunt-contrib-yuidoc'
     @loadNpmTasks 'grunt-gh-pages'
+    @loadNpmTasks 'grunt-github-releaser'
     @loadNpmTasks 'grunt-merge-json'
     @loadNpmTasks 'grunt-docco'
     @loadNpmTasks 'grunt-jsonlint'
