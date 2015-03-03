@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{language}}">
+    <head>
+        <meta charset="utf-8" />
+        <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+        wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+        <title>{{>pagetitle}} USA</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <!-- Meta data -->
+        <meta name="description" content="{{#if page.description }}{{page.description}}{{else}}{{{i18n "site-description"}}}{{/if}}" />
+        {{>metadata}}
+        <!-- Meta data-->
+        {{>headresources}}
+    </head>
+    <body vocab="http://schema.org/" typeof="WebPage" class="{{#isnt subsite_title 'false'}}sub-title{{/isnt}}" >
+        <ul id="wb-tphp">
+            <li class="wb-slc">
+                <a class="wb-sl" href="#wb-cont">{{{i18n "tmpl-skip-cont"}}}</a>
+            </li>
+
+{{#is secondarymenu "true"}}
+            <li class="wb-slc visible-md visible-lg">
+                <a class="wb-sl" href="#wb-sec">{{{i18n "tmpl-skip-section"}}}</a>
+            </li>
+{{/is}}
+        </ul>
+        <header role="banner">
+            <div id="wb-bnr">
+                <div id="wb-bar">
+                    <div class="container">
+                        <div class="row">
+                            {{>headerbar}}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div id="wb-sttl" class="col-md-12">
+                            {{>brand}}
+                        </div>
+{{#isnt sitesearch "false"}}
+                        <section id="wb-srch" class="visible-md visible-lg">
+                            <h2>{{{i18n "tmpl-search"}}}</h2>
+                            {{>sitesearch}}
+                        </section>
+{{/isnt}}
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+
+
+        <main role="main" property="mainContentOfPage" class="{{#is secondarymenu "true"}}col-md-9 col-md-push-3{{else}}container{{/is}}">
+
+            {{>body}}
+
+        </main>
+
+
+
+    </body>
+</html>

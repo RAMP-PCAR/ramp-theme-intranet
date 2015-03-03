@@ -775,6 +775,7 @@ module.exports = (grunt) ->
                         languages: ['en', 'fr']
                         templates: [
                             'site/pages/ramp.hbs'
+                            'site/pages/error.hbs'
                         ]
                 dest: 'build/'
                 src: '!*.*'
