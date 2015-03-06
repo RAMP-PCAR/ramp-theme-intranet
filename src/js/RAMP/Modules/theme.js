@@ -208,10 +208,16 @@ define(["dojo/_base/lang", "utils/util"],
                                     node.attr("title", node.data("tooltip"));
                                 }
                                 
-                                node.tooltipster({
-                                    theme: node.data("tooltip-theme") || attr.theme,
-                                    delay: attr.delay
-                            });
+                                node.tooltipster(
+                                    lang.mixin({
+                                        theme: node.data("tooltip-theme") || attr.theme,
+                                        //autoClose: false,
+                                        maxWidth: node.data("tooltip-maxwidth") || null,
+                                        delay: attr.delay
+                                    },
+                                        options
+                                    )
+                                );
                             })
                             .removeAttr("title");
                         break;
