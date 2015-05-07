@@ -25,12 +25,9 @@
     ],
     "dependencies": {
         "ramp-pcar": "https://github.com/RAMP-PCAR/RAMP-PCAR.git#v5.3.1-rc1",
-        "theme-gc-intranet": "https://github.com/wet-boew/theme-gc-intranet.git#4.0.5"
+        "theme-gc-intranet": "https://github.com/RAMP-PCAR/ramp-wet-dep/raw/dep/v4.0.5/theme-gc-intranet.zip"
     },
     "moduleType": [
         "globals"
-    ],
-    "resolutions": {
-        "DataTables": "1.10.1"
-    }
+    ]
 }
