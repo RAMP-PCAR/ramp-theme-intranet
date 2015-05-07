@@ -26,7 +26,7 @@ define(["dojo/_base/lang", "utils/util"],
             //megaMenuDiv = $("#wb-sm"),
             navigation = $("#wb-bar"),
 
-            header = $("header"),
+            header = $("body>header"),
 
             transitionDuration = 0.5,
 
