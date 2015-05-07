@@ -7,7 +7,7 @@
     "url": "http://tfs.int.ec.gc.ca:8080/tfs/dc/_git/RAMP",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "postinstall": "bower install && cd lib/wet-boew && bower install && npm install && bower link && cd ../theme-gc-intranet && bower link wet-boew && npm install && cd ../.. && grunt init"
+        "postinstall": "bower install && grunt init"
     },
     "keywords": [
         "ramp",
