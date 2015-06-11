@@ -15,8 +15,8 @@
 * @uses Util
 */
 
-define(["dojo/_base/lang", "utils/util"],
-    function (lang, UtilMisc) {
+define(["utils/util"],
+    function (UtilMisc) {
         "use strict";
         
         var body = $("body"),
@@ -139,89 +139,6 @@ define(["dojo/_base/lang", "utils/util"],
             */
             toggleFullScreenMode: function (fullscreen) {
                 _toggleFullScreenMode(fullscreen);
-
-                return this;
-            },
-
-            /**
-             * Tooltip setter helper method.
-             *
-             * @method tooltipster
-             * @param  {Jquery} target  A node to looked for tooltiped children on
-             * @param  {String} type    Type of the tooltips to set
-             * @param  {String} [action] Action name: "update" will update all the tooltips on target with their respective title attributes;
-             * null will create new tooltips
-             * @return {Object}         This
-             * @chainable
-             */
-            tooltipster: function (target, type, action, options) {
-                var attr;
-                target = target || $("body");
-
-                switch (type) {
-                    case "map":
-                        break;
-
-                    default:
-                        attr = {
-                            theme: 'tooltipster-shadow',
-                            delay: 500
-                        };
-                        break;
-                }
-
-                switch (action) {
-                    case "update":
-
-                        target
-                            .find(".tooltipstered")
-                            .each(function (i, obj) {
-                                var node = $(obj);
-                                node
-                                    .attr("data-tooltip", node.attr("title"))
-                                    .tooltipster("content", node.attr("title"))
-                                    .removeAttr("title");
-                            });
-                        break;
-
-                    case "destroy":
-                        target
-                            .find(".tooltipstered")
-                            .each(function (i, obj) {
-                                var node = $(obj);
-                                node
-                                    .tooltipster("destroy");
-                            });
-                        break;
-
-                    default:
-                        target
-                            .find('.tooltip, ._tooltip')
-                            // preserve title value for future use 
-                            .each(function (i, obj) {
-                                var node = $(obj),
-                                    title = node.attr("title");
-
-                                if (title) {
-                                    node.attr("data-tooltip", node.attr("title"));
-                                } else {
-                                    node.attr("title", node.data("tooltip"));
-                                }
-                                
-                                node.tooltipster(
-                                    lang.mixin({
-                                        theme: node.data("tooltip-theme") || attr.theme,
-                                        //autoClose: false,
-                                        maxWidth: node.data("tooltip-maxwidth") || null,
-                                        delay: attr.delay
-                                    },
-                                        options
-                                    )
-                                );
-                            })
-                            .removeAttr("title");
-                        break;
-                }
 
                 return this;
             }
