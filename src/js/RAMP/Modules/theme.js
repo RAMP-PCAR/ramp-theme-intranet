@@ -1,7 +1,8 @@
 ﻿/*global define, TimelineLite, TweenLite, $ */
 
 /**
-* This submodule contains theme-specific classes with animation sequences such as Full Screen transition or tooltip setter helper method.
+* This submodule contains theme-specific classes with animation sequences such as Full Screen transition or tooltip
+* setter helper method.
 *
 * @module RAMP
 * @submodule Theme
@@ -15,55 +16,68 @@
 * @uses Util
 */
 
-define(["utils/util"],
+define(['utils/util'],
     function (UtilMisc) {
-        "use strict";
-        
-        var body = $("body"),
-            wbCore = $("main"),
-            wbFoot = $("footer"),
+        'use strict';
 
-            //megaMenuDiv = $("#wb-sm"),
-            navigation = $("#wb-bar"),
+        var body = $('body');
+        var wbCore = $('main');
+        var wbFoot = $('footer');
 
-            header = $("body>header"),
+        //megaMenuDiv = $('#wb-sm'),
+        var navigation = $('#wb-bar');
 
-            transitionDuration = 0.5,
+        var header = $('body>header');
 
-            layout = {
-                headerHeight: 195,
-                headerHeightCollapsed: 53,
+        var transitionDuration = 0.5;
 
-                footerHeight: 30,
-                footerHeightCollapsed: 5,
+        var layout = {
+            headerHeight: 195,
+            headerHeightCollapsed: 53,
 
-                subtitleHeight: 35,
+            footerHeight: 30,
+            footerHeightCollapsed: 5,
 
-                toolbarHeight: 32
-            },
+            subtitleHeight: 35,
 
-            // height gain from the fullscreening the template
-            heightGain = layout.headerHeight - layout.headerHeightCollapsed + layout.footerHeight - layout.footerHeightCollapsed,
+            toolbarHeight: 32,
+        };
 
-            isFullScreen = false,
-            
-            fullScreenTimeLine = new TimelineLite({ paused: true }),
-            subpanelTimeline = new TimelineLite();
+        // height gain from the fullscreening the template
+        var heightGain = layout.headerHeight - layout.headerHeightCollapsed +
+                         layout.footerHeight - layout.footerHeightCollapsed;
 
-        if (body.hasClass("sub-title")) {
+        var isFullScreen = false;
+
+        var fullScreenTimeLine = new TimelineLite({ paused: true });
+        var subpanelTimeline = new TimelineLite();
+
+        if (body.hasClass('sub-title')) {
             layout.headerHeight += layout.subtitleHeight;
             heightGain += layout.subtitleHeight;
         }
 
         // tweening wet template parts
         fullScreenTimeLine
-                .to(header, transitionDuration, { top: navigation.outerHeight() * -1, position: "relative", ease: "easeOutCirc" }, 0)
-                //.set(megaMenuDiv, { display: "none !important", className: "+=wb-invisible" })
+                .to(header, transitionDuration, {
+                    top: navigation.outerHeight() * -1,
+                    position: 'relative',
+                    ease: 'easeOutCirc',
+                }, 0)
 
-                .to(wbCore, transitionDuration, { top: layout.headerHeightCollapsed, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
-                .to(wbFoot, transitionDuration, { height: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
+                //.set(megaMenuDiv, { display: 'none !important', className: '+=wb-invisible' })
 
-            .call(function () { body.addClass("full-screen"); }) // set full-screen class here, not in the callback since callbacks can be overwritten by fullScreenCallback function
+                .to(wbCore, transitionDuration,
+                    {
+                        top: layout.headerHeightCollapsed,
+                        bottom: layout.footerHeightCollapsed,
+                        ease: 'easeOutCirc',
+                    }, 0)
+                .to(wbFoot, transitionDuration, { height: layout.footerHeightCollapsed, ease: 'easeOutCirc' }, 0)
+
+            // set full-screen class here, not in the callback since callbacks can be overwritten by
+            // fullScreenCallback function
+            .call(function () { body.addClass('full-screen'); })
 
             .add(subpanelTimeline, 0); // special timeline to tween subpanels
 
@@ -76,29 +90,48 @@ define(["utils/util"],
         function _toggleFullScreenMode(fullscreen) {
             subpanelTimeline
                 .clear() // need to recreate this timeline every time to capture newly created subpanels
-                .fromTo(".sub-panel-container.summary-data-details", transitionDuration,
-                    { top: layout.headerHeight + layout.toolbarHeight, bottom: layout.footerHeight },
-                    { top: layout.headerHeightCollapsed + layout.toolbarHeight, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0)
-                .fromTo(".sub-panel-container.full-data-details", transitionDuration,
-                    { top: layout.headerHeight, bottom: layout.footerHeight },
-                    { top: layout.headerHeightCollapsed, bottom: layout.footerHeightCollapsed, ease: "easeOutCirc" }, 0);
+                .fromTo('.sub-panel-container.summary-data-details', transitionDuration,
+                    {
+                        top: layout.headerHeight + layout.toolbarHeight,
+                        bottom: layout.footerHeight,
+                    },
+                    {
+                        top: layout.headerHeightCollapsed + layout.toolbarHeight,
+                        bottom: layout.footerHeightCollapsed,
+                        ease: 'easeOutCirc',
+                    }, 0)
+                .fromTo('.sub-panel-container.full-data-details', transitionDuration,
+                    {
+                        top: layout.headerHeight,
+                        bottom: layout.footerHeight,
+                    },
+                    {
+                        top: layout.headerHeightCollapsed,
+                        bottom: layout.footerHeightCollapsed,
+                        ease: 'easeOutCirc',
+                    }, 0);
 
             isFullScreen = UtilMisc.isUndefined(fullscreen) ? !isFullScreen : fullscreen;
 
             if (isFullScreen) {
-                // need to tween datatables separately since it's very cumbersome to calculate their exact height - easier just to adjust height up/down by height gained when fullscreening the template
+                // need to tween datatables separately since it's very cumbersome to calculate their exact height -
+                // easier just to adjust height up/down by height gained when fullscreening the template
                 TweenLite
-                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration,
-                        { height: "+=" + heightGain, ease: "easeOutCirc", delay: 0.02 }); // animate height of the datatable scrollBody since it's explicitly set ,
+                    .to('.full-data-mode .dataTables_scrollBody', transitionDuration,
+
+                        // animate height of the datatable scrollBody since it's explicitly set ,
+                        { height: '+=' + heightGain, ease: 'easeOutCirc', delay: 0.02 });
 
                 fullScreenTimeLine.play();
 
             } else {
                 TweenLite
-                    .to(".full-data-mode .dataTables_scrollBody", transitionDuration - 0.02,
-                        { height: "-=" + heightGain, ease: "easeInCirc" }); // animate height of the datatable scrollBody since it's explicitly set ,
+                    .to('.full-data-mode .dataTables_scrollBody', transitionDuration - 0.02,
 
-                body.removeClass("full-screen");
+                        // animate height of the datatable scrollBody since it's explicitly set ,
+                        { height: '-=' + heightGain, ease: 'easeInCirc' });
+
+                body.removeClass('full-screen');
                 fullScreenTimeLine.reverse();
             }
         }
@@ -141,7 +174,8 @@ define(["utils/util"],
                 _toggleFullScreenMode(fullscreen);
 
                 return this;
-            }
+            },
         };
     }
+
 );
