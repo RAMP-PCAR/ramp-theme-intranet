@@ -43,6 +43,12 @@ define(['utils/util'],
             toolbarHeight: 32,
         };
 
+        if ($('html').hasClass('no-wb-sm')) {
+            // update header height if no-mega-menu class is present
+            layout.headerHeight -= 58;
+            header.find('#wb-sm').remove(); // remove megamenu
+        }
+
         // height gain from the fullscreening the template
         var heightGain = layout.headerHeight - layout.headerHeightCollapsed +
                          layout.footerHeight - layout.footerHeightCollapsed;

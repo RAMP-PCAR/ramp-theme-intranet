@@ -1,6 +1,10 @@
 ﻿body.sub-title {
     main {
         top: @header-height + @subtitle-height;
+
+        .no-wb-sm & {
+            top: @header-height + @subtitle-height - @wb-sm-height;
+        }
     }
 }
 
@@ -15,20 +19,22 @@ header {
 main {
     top: @header-height;
     z-index: 1;
-
     border: 0 !important;
+
+    .no-wb-sm & {
+        top: @header-height - @wb-sm-height;
+    }
 }
 
 footer {
     border-top: 0;
     overflow: hidden;
-    
+
     .container {
         width: 100%;
 
-        #gc-tctr{
+        #gc-tctr {
             margin-top: 5px;
         }
-
     }
 }

@@ -4,6 +4,10 @@
 
         .sub-panel-container {
             top: @header-height + @subtitle-height;
+
+            .no-wb-sm & {
+                top: @header-height + @subtitle-height - @wb-sm-height;
+            }
         }
     }
 }

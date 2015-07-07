@@ -4,5 +4,10 @@
 .sub-title {
     .sub-panel-container {
         top: @header-height + @toolbar-height + @subtitle-height;
+
+        .no-wb-sm & {
+            top: @header-height + @toolbar-height + @subtitle-height - @wb-sm-height;
+        }
+
     }
 }
